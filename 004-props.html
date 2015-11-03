@@ -30,12 +30,19 @@
 			/* Recipe.getInitialState(): must return an object or null */
 			return null;
 		},
+		warning: function() {
+			console.log('this.props.rating')
+			if (this.props.rating === 1) {
+				return 'bad'
+			}
+		},
 	  render: function() {
 	    return (
 	      <div>
 	        <h2> {this.props.title} </h2>
 	        <p> {this.props.instructions} </p>
 					<p> Rating: {this.props.rating} </p>
+					<p> {this.warning()} </p>
 	      </div>
 
 	    );
