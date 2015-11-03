@@ -35,7 +35,9 @@
 	      <div>
 	        <h2> {this.props.title} </h2>
 	        <p> {this.props.instructions} </p>
+					<p> Rating: {this.props.rating} </p>
 	      </div>
+
 	    );
 	  }
 	});
@@ -47,10 +49,12 @@
 	      	<Recipe
 	      		title="Stuffed Chard"
 	      		instructions="Stuff the chard..."
+						rating = {4}
 	      	/>
 	      	<Recipe
 	      		title="Eggplant and Polenta"
 	      		instructions="Put the eggplant in the oven..."
+						rating = {1}
 	      	/>
 	      </div>
 	    );

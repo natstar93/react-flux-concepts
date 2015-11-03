@@ -36,9 +36,18 @@
 	    return (
 	      <div>
 	        RecipeForm component text
+					<RecipeLink/>
 	      </div>
 	    );
 	  }
+	});
+
+	var RecipeLink = React.createClass({
+		render: function() {
+			return (
+				<p><a href="http://natalie-akam.com">My website</a></p>
+			);
+		}
 	});
 
 	var RecipeBook = React.createClass({
@@ -53,6 +62,7 @@
 	    );
 	  }
 	});
+
 
 	React.render(
 	  <RecipeBook/>,
