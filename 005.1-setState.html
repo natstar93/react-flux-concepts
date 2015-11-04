@@ -26,7 +26,8 @@
       var Recipe = React.createClass({
         getInitialState : function() {
           return {
-            dropDownIsOpen : false
+            dropDownIsOpen : false,
+						hoverMessageDisplayed : true
           };
         },
         handleClick : function() {
@@ -34,6 +35,11 @@
             dropDownIsOpen : !this.state.dropDownIsOpen
           });
         },
+				handleHover : function() {
+					this.setState({
+						hoverMessageDisplayed : !this.state.hoverMessageDisplayed
+					});
+				},
         renderDropdown: function () {
           return (
             <div style={{ background: "#ccc" }}>
@@ -41,14 +47,26 @@
             </div>
           );
         },
+				renderHoverMessage: function() {
+					return (
+						<div style={{ color: "red" }}>
+						  Hover over the thing
+						</div>
+					)
+				},
         render : function() {
           var dropdown = this.state.dropDownIsOpen ? this.renderDropdown() : null;
+					var hoverMessage = this.state.hoverMessageDisplayed ? this.renderHoverMessage() : null;
 
           return (
-            <div onClick={this.handleClick}>
-              Click me!
-              {dropdown}
-            </div>
+						<div>
+						  <button onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>Hover over me</button>
+	            <div onClick={this.handleClick}>
+	              Click me!
+	              {dropdown}
+								{hoverMessage}
+	            </div>
+						</div>
           )
         }
       });

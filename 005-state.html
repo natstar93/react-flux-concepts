@@ -19,13 +19,13 @@
       var Recipe = React.createClass({
         getInitialState : function() {
           return {
-            ingredient : "Eggplant"
+            dropdownIsOpen : false
           };
         },
         render : function() {
           return (
             <div>
-            We need {this.state.ingredient}
+            {this.state.dropdownIsOpen}
             </div>
           )
         }
