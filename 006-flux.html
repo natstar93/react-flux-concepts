@@ -37,6 +37,14 @@
             _recipes.push(text);
         }
 
+        function addKitten(text){
+            _recipes.push(text);
+        }
+
+        function clearAll() {
+            _recipes = [];
+        }
+
         var RecipeStore = Flux.createStore({
             getRecipes: function(){
                return _recipes;
@@ -44,6 +52,14 @@
         }, function(payload){
             if(payload.actionType === "ADD_RECIPE") {
                 addRecipe(payload.text);
+                RecipeStore.emitChange();
+            }
+            if(payload.actionType === "ADD_KITTEN") {
+                addKitten(payload.text);
+                RecipeStore.emitChange();
+            }
+            if(payload.actionType === "CLEAR_ALL") {
+                clearAll();
                 RecipeStore.emitChange();
             }
         });
@@ -56,6 +72,17 @@
                   actionType: "ADD_RECIPE",
                   text: text
                }
+            },
+            addKitten: function(text){
+              return {
+                actionType: "ADD_KITTEN",
+                text: text
+              }
+            },
+            clearAll: function() {
+              return {
+                actionType: "CLEAR_ALL"
+              }
             }
         });
 
@@ -86,7 +113,14 @@
             addRecipe: function(){
                 RecipeActions.addRecipe({_id: Math.floor(Math.random()*1000000)});
             },
+            addKitten: function() {
+                RecipeActions.addKitten({_id: "Kittens" + Math.floor(Math.random()*100000)});
+            },
+            clearRecipes: function() {
+                RecipeActions.clearAll();
+            },
             render: function() {
+                console.log(getRecipes());
                 return (
                 <div className="recipes_app">
                     <ul className="recipes">
@@ -94,7 +128,10 @@
                             return <li key={index}>recipe {index} : {recipe._id}</li>
                         })}
                     </ul>
+
                     <button onClick={this.addRecipe}>Add recipe</button>
+                    <button onClick={this.addKitten}>Add kitten</button>
+                    <button onClick={this.clearRecipes}>Clear all</button>
                 </div>
                 )
             }
@@ -104,5 +141,3 @@
     </script>
 </body>
 </html>
-
-

@@ -128,7 +128,7 @@
                 */
                 return (
                 <div className="todos_app">
-                    <input type="text" value={this.props.HOMEWORK} ref="inv"/>
+                    <Input value={this.props.something} />
                     <ul className="recipes">
                         {recipeNodes}
                     </ul>
@@ -137,6 +137,14 @@
                 </div>
                 )
             }
+        });
+
+        var Input = React.createClass({
+          render : function() {
+            return (
+              <input type="text" ref="inv"/>
+            )
+          }
         });
 
         React.render(<RecipeBook />, document.body);
