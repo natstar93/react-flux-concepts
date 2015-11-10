@@ -89,7 +89,7 @@
                 return getRecipes();
             },
             storeDidChange: function() {
-                console.log('changed')
+                console.log('store changed')
                 this.setState(getRecipes());
             },
             render: function() {
@@ -106,9 +106,10 @@
               };
             },
             addRecipe: function(){
-                console.log('hi');
+                console.log('adding');
                 RecipeActions.addRecipe(this.refs.inputVal.getDOMNode().value);
                 this.refs.inputVal.getDOMNode().value = "";
+                this.state.value = '';
             },
             clearRecipes: function(){
                 RecipeActions.clearRecipes();
@@ -121,10 +122,6 @@
             },
             handleChange: function () {
               var newValue = this.refs.inputVal.getDOMNode().value;
-
-              // RecipeActions.inputChanged({
-              //   value: newValue
-              // });
 
               this.setState({
                 value: newValue
@@ -165,13 +162,13 @@
           handleInputChange: function () {
             // Proxy to parent moving to generalize input
             this.props.inputCallback({
-              value: this.refs.inputVal.getDOMNode().value
+              value: this.refs.input.getDOMNode().value
             });
           },
           render : function() {
              console.log(this.props.value);
             return (
-              <input type="text" value={this.props.value} ref="inputVal" onChange={this.handleInputChange}/>
+              <input type="text" value={this.props.value} ref="input" onChange={this.handleInputChange}/>
             )
           }
         });
